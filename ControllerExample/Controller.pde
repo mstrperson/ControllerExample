@@ -12,7 +12,7 @@ class Controller
     input = ControlIO.getInstance(app);
     println(input.getDevices());
     
-    control1 = input.getDevice(7);
+    control1 = input.getDevice(3);
     println(input.devicesToText("control1"));
     
     buttonState = new boolean[control1.getNumberOfButtons()];
@@ -28,7 +28,7 @@ class Controller
     
     println();
     
-    print( int(control1.getSlider("X Axis").getValue()),int(control1.getSlider("Y Axis").getValue()) );
+    print( int(control1.getSlider("x").getValue()),int(control1.getSlider("y").getValue()) );
     
     println();
   }
