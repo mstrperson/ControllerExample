@@ -1,4 +1,24 @@
 import org.gamecontrolplus.*;
+import java.util.List;
+import java.util.ArrayList;
+
+// Globally Defined function usable in the main class.
+ArrayList<Controller> getControllers()
+{
+  ArrayList<Controller> controllers = new ArrayList<Controller>();
+  ControlIO input = ControlIO.getInstance(this);
+  for(ControlDevice device : input.getDevices())
+  {
+    String name = device.getName();
+    if(name.contains("joystick"))
+    {
+      controllers.add(new Controller(device));
+    }
+  }
+  
+  return controllers;
+}
+ArrayList<Controller> Controllers = getControllers();
 
 class Controller
 {
@@ -6,6 +26,8 @@ class Controller
   private ControlDevice control1;
   
   public boolean[] buttonState;
+  
+  
   
   public Controller(PApplet app)
   {
@@ -18,6 +40,26 @@ class Controller
     buttonState = new boolean[control1.getNumberOfButtons()];
     updateButtonState();
   }
+  
+  public Controller(PApplet app, int number)
+  {
+    input = ControlIO.getInstance(app);
+    println(input.getDevices());
+    
+    control1 = input.getDevice(number);
+    println(input.devicesToText("control1"));
+    
+    buttonState = new boolean[control1.getNumberOfButtons()];
+    updateButtonState();
+  }
+  
+  public Controller(ControlDevice device)
+  {
+    control1 = device;
+    updateButtonState();
+  }
+  
+  
   
   void test()
   {
