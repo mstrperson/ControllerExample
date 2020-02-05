@@ -1,12 +1,12 @@
-PlayStationController controller;
+SimpleController controller;
 
-int x = width / 2, y=height / 2;
+float x = width / 2, y=height / 2;
 
 
 void setup()
 {
   size(500, 500);
-  controller = new PlayStationController(this);
+  controller = new SimpleController(this);
 }
 
 void draw()
@@ -17,13 +17,28 @@ void draw()
   fill(180, 50, 255);
   noStroke();
   ellipse(x, y, 20, 20);
-  /*
+  
+  
   if(controller.left()) x -= 5;
   if(controller.right()) x += 5;
   if(controller.up()) y -= 5;
   if(controller.down()) y += 5;
-  */
   
-  x += 5*controller.Lx();
-  y += 5*controller.Ly();
+  if(controller.buttonState[0])
+  {
+    textSize(50);
+    text("Woah!!!", 50, 100);
+  }
+  
+  
+  // if you have a PlayStation Controller... use the Analog Sticks!
+  //x += 5*controller.Lx();
+  //y += 5*controller.Ly();
+  
+  //if(controller.Triangle())
+  //{
+  //  textSize(50);
+  //  text("Woah!!!", 50, 100);
+  //}
+ 
 }
