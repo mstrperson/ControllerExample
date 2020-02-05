@@ -10,9 +10,9 @@ class SimpleController extends Controller
   public boolean A() { return buttonState[2]; }
   public boolean X() { return buttonState[3]; }
   
-  public boolean left() { return getXAxis() < 0; }
-  public boolean right() { return getXAxis() > 0; }
+  public boolean left() { return int(getXAxis()) < 0; }
+  public boolean right() { return int(getXAxis()) > 0; }
   
-  public boolean up() { return getYAxis() < 0; }
-  public boolean down() { return getYAxis() > 0; }
+  public boolean up() { return int(getYAxis()) < 0; }
+  public boolean down() { return int(getYAxis()) > 0; }
 }
