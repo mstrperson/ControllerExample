@@ -16,7 +16,8 @@ ArrayList<SimpleController> getControllers()
     println(name);
     if(name.contains("joystick") || name.contains("gamepad") || name.contains("controller"))
     {
-      controllers.add(new SimpleController(this, i));
+      if(device.getNumberOfButtons() > 0)
+        controllers.add(new SimpleController(this, i));
     }
     
     i++;
