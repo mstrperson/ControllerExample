@@ -51,8 +51,10 @@ void update()
 {
   while(true)
   {
-    if(Player1 != null) Player1.updateButtonState();
-    if(Player2 != null) Player2.updateButtonState();
+    for(Controller c : Controllers)
+    {
+      c.updateButtonState();
+    }
     delay(20);
   }
 }
