@@ -3,9 +3,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 // Globally Defined functions usable in the main class.
-ArrayList<SimpleController> getControllers()
+ArrayList<Controller> getControllers()
 {
-  ArrayList<SimpleController> controllers = new ArrayList<SimpleController>();
+  ArrayList<Controller> controllers = new ArrayList<Controller>();
   ControlIO input = ControlIO.getInstance(this);
   int i = 0;
   for(ControlDevice device : input.getDevices())
@@ -17,7 +17,7 @@ ArrayList<SimpleController> getControllers()
     if(name.contains("joystick") || name.contains("gamepad") || name.contains("controller"))
     {
       if(device.getNumberOfButtons() > 0)
-        controllers.add(new SimpleController(this, i));
+        controllers.add(new Controller(this, i));
     }
     
     i++;
@@ -26,12 +26,12 @@ ArrayList<SimpleController> getControllers()
   return controllers;
 }
 
-ArrayList<SimpleController> Controllers = getControllers();
+ArrayList<Controller> Controllers = getControllers();
 
 // Player1 is the first controller detected
-SimpleController Player1 = null;
+Controller Player1 = null;
 // Player2 is the second controller detected if a second controller is plugged in.
-SimpleController Player2 = null;
+Controller Player2 = null;
 
 void initializeControllers()
 {
@@ -134,14 +134,6 @@ class Controller
     if(abs(v) < 0.01) return 0;
     
     return v; 
-  }
-}
-
-class SimpleController extends Controller
-{ 
-  public SimpleController(PApplet app, int n)
-  {
-    super(app, n);
   }
   
   public boolean X() { return buttonState[0]; }
